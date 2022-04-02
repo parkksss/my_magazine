@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import Header from '../components/Header';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Route path="/">
           <Magazine/>
         </Route>
+      </BrowserRouter>
+      <Header></Header>
+      <BrowserRouter>
         <Route path="/login">
           <Login/>
         </Route>
