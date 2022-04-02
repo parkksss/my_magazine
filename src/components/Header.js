@@ -3,7 +3,8 @@ import React from 'react';
 const Header = () => {
   return (
     <React.Fragment>
-      Header
+      <div>home logo</div>
+      <div>page link btn</div>
     </React.Fragment>
   );
 };
