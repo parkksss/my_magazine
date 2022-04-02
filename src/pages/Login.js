@@ -1,7 +1,7 @@
 import React from 'react';
+
 import Header from '../shared/Header';
-import Grid from '../elements/Grid';
-import Text from '../elements/Text';
+import { Grid, Text } from '../elements';
 
 const Login = () => {
   return (

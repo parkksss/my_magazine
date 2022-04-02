@@ -1,7 +1,7 @@
 import React from 'react';
-import Grid from '../elements/Grid';
+
 import Header from '../shared/Header';
-import Text from '../elements/Text';
+import { Grid, Text } from '../elements';
 
 const Signup = () => {
   return (

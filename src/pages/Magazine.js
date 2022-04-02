@@ -1,6 +1,7 @@
 import React from 'react';
-import Grid from '../elements/Grid';
 import Header from '../shared/Header';
+
+import { Grid, Text } from '../elements';
 
 const Magazine = (props) => {
 
