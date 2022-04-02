@@ -1,10 +1,13 @@
 import React from 'react';
+import Grid from '../elements/Grid';
 
 const Magazine = (props) => {
 
   return (
     <React.Fragment>
-      Magazine
+      <Grid padding="16px">
+        Magazine
+      </Grid>
     </React.Fragment>
   );
 

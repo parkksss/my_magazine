@@ -14,4 +14,6 @@ const Signup = () => {
   );
 };
 
+Signup.defaultProps = {};
+
 export default Signup;

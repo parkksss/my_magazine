@@ -5,17 +5,17 @@ import styled from 'styled-components';
 import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
-import Header from '../components/Header';
+import Header from './Header';
 
 function App() {
   return (
     <React.Fragment>
+      <Header></Header>
       <BrowserRouter>
         <Route path="/">
           <Magazine/>
         </Route>
       </BrowserRouter>
-      <Header></Header>
       <BrowserRouter>
         <Route path="/login">
           <Login/>

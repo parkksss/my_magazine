@@ -12,4 +12,6 @@ const Login = () => {
   );
 }
 
+Login.defaultProps = {};
+
 export default Login;
