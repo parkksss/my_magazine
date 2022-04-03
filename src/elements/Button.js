@@ -40,6 +40,10 @@ const ElButton = styled.button`
   border: ${(props) => props.border};
   ${(props) => (props.borderRadius ? `border-radius: ${props.borderRadius};` : '')}
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')} 
+  &:hover {
+    text-decoration: underline;
+    font-weight: 700;
+  }
 `;
 
 export default Button;

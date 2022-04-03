@@ -19,10 +19,10 @@ function App() {
           </Route>
         </BrowserRouter>
         <BrowserRouter>
-          <Route path="/login">
+          <Route path="/login" exact>
             <Login/>
           </Route>
-          <Route path="/signup">
+          <Route path="/signup" exact>
             <Signup/>
           </Route>
         </BrowserRouter>

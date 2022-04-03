@@ -25,6 +25,10 @@ const ElInput = styled.input`
   width: 100%;
   padding: 12px 4px;
   box-sizing: border-box;
+  outline: none;
+  &:focus {
+    border: 1px solid blue;
+  }
 `;
 
 export default Input;
