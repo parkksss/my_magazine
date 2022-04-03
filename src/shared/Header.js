@@ -1,19 +1,24 @@
 import React from 'react';
-import Grid from '../elements/Grid';
-import Text from '../elements/Text';
+import { useHistory } from 'react-router-dom';
 
-const Header = () => {
+import { Grid, Text, Button } from '../elements';
+
+const Header = (props) => {
+  const history = useHistory();
   return (
     <React.Fragment>
-      <Grid padding='16px' is_flex>
+      <Grid width='95%' padding='16px' margin='auto' is_flex>
         <Grid>
           <Text bold size='24px'>PTree M</Text>
         </Grid>
-        {/* <Grid is_flex> */}
-          <button>로그인</button>
-          <button>회원가입</button>
+        <Grid is_flex>
+          <Button margin='10px' onClick={()=>{
+            alert("로그인!");
+            // history.push('/login');
+          }}>로그인</Button>
+          <Button>회원가입</Button>
           {/* <div>page link btn - list-object ; text, function</div> */}
-        {/* </Grid> */}
+        </Grid>
       </Grid>
     </React.Fragment>
   );

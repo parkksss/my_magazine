@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../shared/Header';
 import { Grid, Text } from '../elements';
 
-const Signup = () => {
+const Signup = (props) => {
   return (
     <React.Fragment>
       <Grid>

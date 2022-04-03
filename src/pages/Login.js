@@ -1,18 +1,18 @@
 import React from 'react';
 
 import Header from '../shared/Header';
-import { Grid, Text } from '../elements';
+import { Grid, Text, Input } from '../elements';
 
-const Login = () => {
+const Login = (props) => {
   return (
     <React.Fragment>
       <Grid>
         <Header></Header>
       </Grid>
       <Grid padding="16px">
-        <Text bold size="24px">login</Text>
-        <div>id label / id input</div>
-        <div>password label / password input</div>
+        <Text bold size="32px">login</Text>
+        <Input/>id label / id input
+        <Input/>password label / password input
         <div>login submit btn</div>
       </Grid>
     </React.Fragment>
