@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
-// import Header from './Header';
+import Header from './Header';
 
 function App() {
   return (

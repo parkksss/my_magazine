@@ -14,7 +14,7 @@ const Button = (props) => {
 
   return (
     <React.Fragment>
-      <ElButton {...styles} onClick={_onClick}>{text}</ElButton>
+      <ElButton onClick={_onClick} {...styles}>{text}</ElButton>
     </React.Fragment>
   );
 }
@@ -25,23 +25,21 @@ Button.defaultProps = {
   width: '100%',
   bg: 'transparent',
   color: '#212121',
-  border: false,
+  border: '1px solid #212121',
   borderRadius: false,
   margin: false,
 };
 
 const ElButton = styled.button`
-  width: ${(props) => props.width};
   height: 45px;
+  width: ${(props) => props.width};
   background-color: ${(props) => props.bg};
   color: ${(props) => props.color};
   outline: none;
   box-sizing: border-box;
-  // text-align: center;
-  ${(props) => (props.border ? `border: ${props.border};` : '')}
+  border: ${(props) => props.border};
   ${(props) => (props.borderRadius ? `border-radius: ${props.borderRadius};` : '')}
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')} 
-  ${(props) => (props.padding ? `padding: ${props.padding};` : '')} 
 `;
 
 export default Button;

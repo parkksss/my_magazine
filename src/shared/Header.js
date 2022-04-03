@@ -12,12 +12,13 @@ const Header = (props) => {
           <Text bold size='24px'>PTree M</Text>
         </Grid>
         <Grid is_flex>
-          <Button margin='10px' onClick={()=>{
-            alert("로그인!");
+          <Button text='login' margin='10px' _onClick={()=>{
+            alert('로그인할까?');
             // history.push('/login');
-          }}>로그인</Button>
-          <Button>회원가입</Button>
-          {/* <div>page link btn - list-object ; text, function</div> */}
+          }}></Button>
+          <Button text='join' _onClick={()=>{
+            alert('회원가입할까?');
+          }}></Button>
         </Grid>
       </Grid>
     </React.Fragment>
