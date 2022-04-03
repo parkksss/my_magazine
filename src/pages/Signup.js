@@ -6,9 +6,9 @@ import { Grid, Text } from '../elements';
 const Signup = (props) => {
   return (
     <React.Fragment>
-      <Grid>
+      {/* <Grid>
         <Header></Header>
-      </Grid>
+      </Grid> */}
       <Grid padding="16px">
         <Text bold size="24px">join</Text>
         <div>id label / id input</div>

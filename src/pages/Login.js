@@ -6,9 +6,9 @@ import { Grid, Text, Input, Button } from '../elements';
 const Login = (props) => {
   return (
     <React.Fragment>
-      <Grid>
+      {/* <Grid>
         <Header></Header>
-      </Grid>
+      </Grid> */}
       <Grid padding="16px">
         <Text bold size="32px">login</Text>
         <Grid padding='16px 0'>

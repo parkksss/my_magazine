@@ -7,9 +7,9 @@ const Magazine = (props) => {
 
   return (
     <React.Fragment>
-      <Grid>
+      {/* <Grid>
         <Header></Header>
-      </Grid>
+      </Grid> */}
       <Grid padding="16px">
         Magazine
       </Grid>

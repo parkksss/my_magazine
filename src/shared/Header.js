@@ -9,7 +9,7 @@ const Header = (props) => {
     <React.Fragment>
       <Grid width='95%' padding='16px' margin='auto' is_flex>
         <Grid>
-          <Text bold size='24px'>PTree M</Text>
+          <Text bold size='24px' margin='0'>PTree M</Text>
         </Grid>
         <Grid is_flex>
           <Button text='login' margin='10px' _onClick={()=>{
