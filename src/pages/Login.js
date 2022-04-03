@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../shared/Header';
-import { Grid, Text, Input } from '../elements';
+import { Grid, Text, Input, Button } from '../elements';
 
 const Login = (props) => {
   return (
@@ -21,7 +21,9 @@ const Login = (props) => {
             console.log('비밀번호 입력했어!');
           }}/>
         </Grid>
-        <div>login submit btn</div>
+        <Button text='로그인하기' border='none' bg='#212121' color='#fff'_onClick={() => {
+          console.log('로그인했어!');
+        }}>login submit btn</Button>
       </Grid>
     </React.Fragment>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = (props) => {
-  const { children, width, bg, color, border, borderRadius, margin, padding, onClick } = props;
+  const { text, _onClick, width, bg, color, border, borderRadius, margin } = props;
   const styles = {
     width: width,
     bg: bg,
@@ -10,36 +10,34 @@ const Button = (props) => {
     border: border,
     borderRadius: borderRadius,
     margin: margin,
-    padding: padding,
   };
-
-  
 
   return (
     <React.Fragment>
-      <Btn {...styles}>{children}</Btn>
+      <ElButton {...styles} onClick={_onClick}>{text}</ElButton>
     </React.Fragment>
   );
 }
 
 Button.defaultProps = {
-  children: null,
+  text: '텍스트',
+  _onClick: () => {},
   width: '100%',
   bg: 'transparent',
-  color: '#222831',
+  color: '#212121',
   border: false,
   borderRadius: false,
   margin: false,
-  padding: false,
 };
 
-const Btn = styled.button`
+const ElButton = styled.button`
   width: ${(props) => props.width};
-  height: 30px;
+  height: 45px;
   background-color: ${(props) => props.bg};
   color: ${(props) => props.color};
   outline: none;
-  text-align: center;
+  box-sizing: border-box;
+  // text-align: center;
   ${(props) => (props.border ? `border: ${props.border};` : '')}
   ${(props) => (props.borderRadius ? `border-radius: ${props.borderRadius};` : '')}
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')} 
