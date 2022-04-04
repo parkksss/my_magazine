@@ -1,5 +1,6 @@
 const getCookie = (name) => { // 받아올것 : name (name으로 value를 가지고 올것)
-  let value = ';'+document.cookie; // 가지고오고
+  let value = '; '+document.cookie; // 가지고오고
+  
   let parts = value.split(`; ${name}=`);// 쪼개기
   if(parts.length === 2) { // parts는 배열이니까, 배열의 길이가 2가아니면 찾는게 없는것
     return parts.pop().split(';').shift();

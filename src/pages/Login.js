@@ -5,7 +5,7 @@ import { Grid, Text, Input, Button } from '../elements';
 import { getCookie, setCookie, deleteCookie } from '../shared/Cookie';
 
 const Login = (props) => {
-  console.log(getCookie('user_pwd'));
+  console.log(getCookie('user_id'));
   const login = () => {
     setCookie('user_id', 'perl', 3);
     setCookie('user_pwd', 'pppp', 3);
@@ -24,8 +24,10 @@ const Login = (props) => {
             console.log('비밀번호 입력했어!');
           }}/>
         </Grid>
-        <Button text='log_in' border='none' bg='#212121' color='#fff'_onClick={login
-        }>login submit btn</Button>
+        <Button text='log_in' border='none' bg='#212121' color='#fff'_onClick={() => {
+          console.log('로그인했어!');
+          login();
+        }}>login submit btn</Button>
       </Grid>
     </React.Fragment>
   );

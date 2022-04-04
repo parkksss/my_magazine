@@ -2,9 +2,46 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Grid, Text, Button } from '../elements';
+import { getCookie, deleteCookie } from '../shared/Cookie';
 
 const Header = (props) => {
   const history = useHistory();
+
+  const [is_login, setIsLogin] = React.useState(false);
+  React.useEffect(() => {
+    let cookie = getCookie('user_id');
+    console.log(cookie);
+    if(cookie){
+      setIsLogin(true);
+    }else{
+      setIsLogin(false);
+    }
+  });
+  if(is_login){
+    return (
+      <React.Fragment>
+        <Grid width='95%' padding='16px' margin='auto' is_flex>
+          <Grid>
+            <Text bold size='24px' margin='0'>PTree M</Text>
+          </Grid>
+          <Grid is_flex>
+            <Button text='my_info'_onClick={()=>{
+              alert('내정보?');
+            }}></Button>
+            <Button text='notice' margin='10px' _onClick={()=>{
+              alert('알림창?');
+            }}></Button>
+            <Button text='logout' _onClick={()=>{
+              alert('로그아웃?');
+              deleteCookie('user_id');
+            }}></Button>
+          </Grid>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+  
+
   return (
     <React.Fragment>
       <Grid width='95%' padding='16px' margin='auto' is_flex>
@@ -14,7 +51,6 @@ const Header = (props) => {
         <Grid is_flex>
           <Button text='login' margin='10px' _onClick={()=>{
             alert('로그인할까?');
-            // history.push('/login');
           }}></Button>
           <Button text='join' _onClick={()=>{
             alert('회원가입할까?');
