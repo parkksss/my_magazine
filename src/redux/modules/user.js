@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { auth } from '../../shared/firebase';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // actions
 const SET_USER = 'SET_USER';
@@ -21,17 +21,27 @@ const initialState = {
 };
 
 // middleware actions
-const loginAction = (user) => {
+const loginFB = (id, pwd) => {
   return function (dispatch, getState, {history}) {
-      console.log(history);
-      dispatch(setUser(user));
-      history.push('/');
+    // const auth = getAuth();
+    signInWithEmailAndPassword(auth, id, pwd)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        dispatch(setUser({user_name: user.displayName, id: id, user_profile: ''}));
+        history.push('/');
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
-}
+};
 
 const signupFB = (id, pwd, user_name) => {
   return function (dispatch, getState, {history}) {
-    const auth = getAuth();
+    // const auth = getAuth();
     createUserWithEmailAndPassword(auth, id, pwd)
       .then((userCredential) => {
         // Signed in
@@ -80,7 +90,7 @@ const actionCreators = {
   setUser,
   logOut,
   getUser,
-  loginAction,
+  loginFB,
   signupFB,
 };
 

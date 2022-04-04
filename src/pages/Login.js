@@ -8,27 +8,36 @@ import { getCookie, setCookie, deleteCookie } from '../shared/Cookie';
 
 const Login = (props) => {
   const dispatch = useDispatch();
+
+  const [id, setId] = React.useState('');
+  const [pwd, setPwd] = React.useState('');
+
   const login = () => {
-    dispatch(userActions.loginAction({user_name: "perl"}));
+    if (id === '' || pwd === '') {
+      window.alert('아이디와 비밀번호를 모두 입력해주세요!');
+      return;
+    }
+    console.log('로그인!')
+    dispatch(userActions.loginFB(id, pwd));
   };
   return (
     <React.Fragment>
       <Grid width='95%' padding='16px' margin='auto'>
         <Text bold size="32px">login</Text>
         <Grid padding='16px 0 0'>
-          <Input label='ID' placeholder='Enter your ID.' _onChange={() => {
-            console.log('아이디 입력했어!');
+          <Input label='ID' placeholder='Enter your ID.' _onChange={(e) => {
+            setId(e.target.value);
           }}/>
         </Grid>
         <Grid padding='16px 0 25px'>
-          <Input label='Password' placeholder='Enter your password.' _onChange={() => {
-            console.log('비밀번호 입력했어!');
+          <Input label='Password' placeholder='Enter your password.' _onChange={(e) => {
+            setPwd(e.target.value);
           }}/>
         </Grid>
         <Button text='log_in' border='none' bg='#212121' color='#fff'_onClick={() => {
           console.log('로그인했어!');
           login();
-        }}>login submit btn</Button>
+        }}></Button>
       </Grid>
     </React.Fragment>
   );
