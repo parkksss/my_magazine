@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../redux/configureStore";
 
 import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
@@ -13,19 +15,17 @@ function App() {
     <React.Fragment>
       <Grid>
         <Header></Header>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <Route path="/" exact>
             <Magazine/>
           </Route>
-        </BrowserRouter>
-        <BrowserRouter>
           <Route path="/login" exact>
             <Login/>
           </Route>
           <Route path="/signup" exact>
             <Signup/>
           </Route>
-        </BrowserRouter>
+        </ConnectedRouter>
       </Grid>
     </React.Fragment>
     );
