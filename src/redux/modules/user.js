@@ -1,14 +1,16 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
+import { auth } from '../../shared/firebase';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // actions
-const LOG_IN = 'LOG_IN';
+const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';
 const GET_USER = 'GET_USER';
 
 // action creators
-const logIn = createAction(LOG_IN, (user) => ({ user }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 
@@ -22,15 +24,41 @@ const initialState = {
 const loginAction = (user) => {
   return function (dispatch, getState, {history}) {
       console.log(history);
-      dispatch(logIn(user));
+      dispatch(setUser(user));
       history.push('/');
   }
 }
 
+const signupFB = (id, pwd, user_name) => {
+  return function (dispatch, getState, {history}) {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, id, pwd)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: user_name
+        }).then(() => {
+          dispatch(setUser({user_name: user_name, id: id, user_profile: ''}));
+          history.push('/');
+        }).catch((error) => {
+          console.log(error);
+        });
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
+};
+
+
 // reducer 
 export default handleActions(
   {
-    [LOG_IN]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         setCookie("is_login", "success");
         draft.user = action.payload.user;
@@ -49,10 +77,11 @@ export default handleActions(
 
 // action creator export
 const actionCreators = {
-  logIn,
+  setUser,
   logOut,
   getUser,
   loginAction,
+  signupFB,
 };
 
 export { actionCreators };
