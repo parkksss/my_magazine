@@ -1,22 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { Grid, Text, Button } from '../elements';
 import { getCookie, deleteCookie } from '../shared/Cookie';
 
 const Header = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [is_login, setIsLogin] = React.useState(false);
-  React.useEffect(() => {
-    let cookie = getCookie('user_id');
-    console.log(cookie);
-    if(cookie){
-      setIsLogin(true);
-    }else{
-      setIsLogin(false);
-    }
-  });
+  const is_login = useSelector((state) => state.user.is_login);
+
+  
   if(is_login){
     return (
       <React.Fragment>
@@ -32,8 +28,7 @@ const Header = (props) => {
               alert('알림창?');
             }}></Button>
             <Button text='logout' _onClick={()=>{
-              alert('로그아웃?');
-              deleteCookie('user_id');
+              dispatch(userActions.logOut({}));
             }}></Button>
           </Grid>
         </Grid>
