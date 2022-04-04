@@ -39,12 +39,12 @@ const Signup = (props) => {
           }}/>
         </Grid>
         <Grid padding='16px 0 0'>
-          <Input label='Password' placeholder='Enter your password.' _onChange={(e) => {
+          <Input label='Password' type='password' placeholder='Enter your password.' _onChange={(e) => {
             setPwd(e.target.value);
           }}/>
         </Grid>
         <Grid padding='16px 0 25px'>
-          <Input label='Password check' placeholder='Enter your password again.' _onChange={(e) => {
+          <Input label='Password check' type='password' placeholder='Enter your password again.' _onChange={(e) => {
             setPwdCheck(e.target.value);
           }}/>
         </Grid>
