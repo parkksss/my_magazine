@@ -1,12 +1,13 @@
 import React from 'react';
 import {Grid, Text, Button, Image, Input} from '../elements';
+import Upload from '../shared/Upload';
 
 const Posting = (props) => {
   return (
     <React.Fragment>
       <Grid padding='16px'>
         <Text bold size='36px'>게시글 작성</Text>
-        <input type='file'/>
+        <Upload/>
       </Grid>
       <Grid>
         <Grid padding='16px'>
