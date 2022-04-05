@@ -6,6 +6,7 @@ import { apiKey } from "./firebase";
 
 import { Grid, Text, Button } from '../elements';
 import { getCookie, deleteCookie } from '../shared/Cookie';
+import Permit from './Permit';
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,27 @@ const Header = (props) => {
   const is_session = sessionStorage.getItem(_session_key) ? true : false;
   console.log(is_session);
   
-  
+  // <Permit>
+  //   <React.Fragment>
+  //       <Grid width='95%' padding='16px' margin='auto' is_flex>
+  //         <Grid>
+  //           <Text bold size='24px' margin='0'>PTree M</Text>
+  //         </Grid>
+  //         <Grid is_flex>
+  //           <Button text='my_info'_onClick={()=>{
+  //             alert('내정보?');
+  //           }}></Button>
+  //           <Button text='notice' margin='10px' _onClick={()=>{
+  //             alert('알림창?');
+  //           }}></Button>
+  //           <Button text='logout' _onClick={()=>{
+  //             dispatch(userActions.logoutFB());
+  //           }}></Button>
+  //         </Grid>
+  //       </Grid>
+  //     </React.Fragment>
+  // </Permit>
+
   if(is_login && is_session){
     return (
       <React.Fragment>

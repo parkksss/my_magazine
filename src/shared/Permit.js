@@ -5,7 +5,7 @@ import { apiKey } from "./firebase";
 const Permit = (props) => {
 
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("여기 출력돼?")
+  // console.log("여기 출력돼?")
   const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
   const is_session = sessionStorage.getItem(_session_key) ? true : false;
   
