@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = (props) => {
-  const { text, _onClick, is_float, width, bg, color, border, borderRadius, margin } = props;
+  const { text, _onClick, is_float, children, width, bg, color, border, borderRadius, margin } = props;
   const styles = {
     width: width,
     bg: bg,
@@ -15,20 +15,21 @@ const Button = (props) => {
   if (is_float) {
     return (
       <React.Fragment>
-        <FloatButton onClick={_onClick}>{text}</FloatButton>
+        <FloatButton onClick={_onClick}>{text? text : children}</FloatButton>
       </React.Fragment>
     );
   }
 
   return (
     <React.Fragment>
-      <ElButton onClick={_onClick} {...styles}>{text}</ElButton>
+      <ElButton onClick={_onClick} {...styles}>{text? text : children}</ElButton>
     </React.Fragment>
   );
 }
 
 Button.defaultProps = {
-  text: '텍스트',
+  text: false,
+  children: null,
   _onClick: () => {},
   is_float: false,
   width: '100%',
