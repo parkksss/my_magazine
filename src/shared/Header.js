@@ -30,7 +30,7 @@ const Header = (props) => {
               alert('알림창?');
             }}></Button>
             <Button text='logout' _onClick={()=>{
-              dispatch(userActions.logOut({}));
+              dispatch(userActions.logoutFB());
             }}></Button>
           </Grid>
         </Grid>

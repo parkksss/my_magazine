@@ -2,7 +2,16 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { auth } from '../../shared/firebase';
-import { getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, browserSessionPersistence, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut
+} from "firebase/auth";
 
 // actions
 const SET_USER = 'SET_USER';
@@ -21,24 +30,6 @@ const initialState = {
 };
 
 // middleware actions
-const loginCheckFB = () => {
-  return function (dispatch, getState, {history}) {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(setUser({
-          user_name: user.displayName,
-          id: user.email,
-          user_profile: '',
-          uid: user.uid,
-        }));
-        // ...
-      } else {
-        dispatch.logOut();
-        // ...
-      }
-    });
-  }  
-};
 
 const loginFB = (id, pwd) => {
   return function (dispatch, getState, {history}) {
@@ -100,6 +91,39 @@ const signupFB = (id, pwd, user_name) => {
   }
 };
 
+const loginCheckFB = () => {
+  return function (dispatch, getState, {history}) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUser({
+          user_name: user.displayName,
+          id: user.email,
+          user_profile: '',
+          uid: user.uid,
+        }));
+        // ...
+      } else {
+        dispatch.logOut();
+        // ...
+      }
+    });
+  }  
+};
+
+const logoutFB = () => {
+  return function (dispatch, getState, {history}) {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      dispatch(logOut());
+      history.replace('/');
+    }).catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
+  }
+  
+};
+
 
 // reducer 
 export default handleActions(
@@ -129,6 +153,7 @@ const actionCreators = {
   loginFB,
   signupFB,
   loginCheckFB,
+  logoutFB,
 };
 
 export { actionCreators };
