@@ -8,7 +8,7 @@ import {actionCreators as userActions} from "../redux/modules/user";
 
 import {apiKey} from "./firebase";
 
-import Post from '../components/Post';
+import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Header from './Header';
@@ -35,7 +35,7 @@ function App() {
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact>
-            <Post/>
+            <Magazine/>
           </Route>
           <Route path="/login" exact>
             <Login/>
