@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Text, Button, Image, Input} from '../elements';
 import Upload from '../shared/Upload';
 
-const Posting = (props) => {
+const PostWrite = (props) => {
   return (
     <React.Fragment>
       <Grid padding='16px'>
@@ -25,4 +25,4 @@ const Posting = (props) => {
   );
 }
 
-export default Posting;
+export default PostWrite;

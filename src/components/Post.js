@@ -3,7 +3,7 @@ import Header from '../shared/Header';
 
 import { Grid, Text, Image } from '../elements';
 
-const Magazine = (props) => {
+const Post = (props) => {
 
   return (
     <React.Fragment>
@@ -22,8 +22,8 @@ const Magazine = (props) => {
         <Grid>
           <Image shape='rectangle' src={props.src} />
         </Grid>
-        <Grid width='95%' padding='0 16px' margin='auto'>
-          <Text bold>댓글 {props.comment_cnt}개</Text>        
+        <Grid width='95%' padding='16px' margin='auto'>
+          <Text margin='0' bold>댓글 {props.comment_cnt}개</Text>        
         </Grid>
       </Grid>
     </React.Fragment>
@@ -31,15 +31,15 @@ const Magazine = (props) => {
 
 };
 
-Magazine.defaultProps = {
+Post.defaultProps = {
   user_info: {
     user_name: 'yesleee',
     user_profile: 'https://user-images.githubusercontent.com/91959791/161682922-347edc18-3711-4108-b9d1-26b51a41447c.jpg',
   },
   image_url: 'https://user-images.githubusercontent.com/91959791/161682922-347edc18-3711-4108-b9d1-26b51a41447c.jpg',
-  contents: '고양이네요!',
+  contents: '베리베리냠냠',
   comment_cnt: 10,
   insert_dt: '2021-02-27 10:00:00',
 };
 
-export default Magazine;
+export default Post;

@@ -9,7 +9,7 @@ const Input = (props) => {
     return (
       <React.Fragment>
         <Grid>
-          <Text margin='0'>{label}</Text>
+          {label && <Text margin='0'>{label}</Text>}
           <ElTextarea rows={10} placeholder={placeholder} onChange={_onChange}></ElTextarea>
         </Grid>
       </React.Fragment>
@@ -19,7 +19,7 @@ const Input = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <Text margin='0'>{label}</Text>
+        {label && <Text margin='0'>{label}</Text>}
         <ElInput type={type} placeholder={placeholder} onChange={_onChange}/>
       </Grid>
     </React.Fragment>
@@ -27,7 +27,7 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
-  label: '텍스트',
+  label: false,
   placeholder: '텍스트를 입력해주세요.',
   _onChange: () => {},
   type: 'text',

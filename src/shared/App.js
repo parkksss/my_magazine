@@ -8,13 +8,15 @@ import {actionCreators as userActions} from "../redux/modules/user";
 
 import {apiKey} from "./firebase";
 
-import Magazine from '../pages/Magazine';
+import Post from '../components/Post';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Header from './Header';
 import { Grid, Button } from '../elements';
 import Permit from './Permit';
-import Posting from '../pages/Posting';
+import PostWrite from '../pages/PostWrite';
+import PostDetail from '../pages/PostDetail';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ function App() {
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact>
-            <Magazine/>
+            <Post/>
           </Route>
           <Route path="/login" exact>
             <Login/>
@@ -42,7 +44,10 @@ function App() {
             <Signup/>
           </Route>
           <Route path="/posting" exact>
-            <Posting/>
+            <PostWrite/>
+          </Route>
+          <Route path="/post/:id" exact>
+            <PostDetail/>
           </Route>
         </ConnectedRouter>
       </Grid>
