@@ -12,7 +12,8 @@ import Magazine from '../pages/Magazine';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Header from './Header';
-import { Grid } from '../elements' 
+import { Grid, Button } from '../elements';
+import Permit from './Permit';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
         </ConnectedRouter>
       </Grid>
+      <Permit>
+        <Button is_float text='+'></Button>
+      </Permit>
     </React.Fragment>
     );
 }
