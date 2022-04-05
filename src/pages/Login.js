@@ -5,6 +5,7 @@ import {actionCreators as userActions} from "../redux/modules/user";
 import Header from '../shared/Header';
 import { Grid, Text, Input, Button } from '../elements';
 import { getCookie, setCookie, deleteCookie } from '../shared/Cookie';
+import { emailCheck } from '../shared/common';
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -13,8 +14,16 @@ const Login = (props) => {
   const [pwd, setPwd] = React.useState('');
 
   const login = () => {
+
+    console.log(id);
+
     if (id === '' || pwd === '') {
       window.alert('아이디와 비밀번호를 모두 입력해주세요!');
+      return;
+    }
+
+    if (!emailCheck(id)) {
+      window.alert('이메일 형식이 맞지 않습니다!');
       return;
     }
     console.log('로그인!')

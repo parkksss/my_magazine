@@ -14,6 +14,7 @@ import Signup from '../pages/Signup';
 import Header from './Header';
 import { Grid, Button } from '../elements';
 import Permit from './Permit';
+import Posting from '../pages/Posting';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/signup" exact>
             <Signup/>
+          </Route>
+          <Route path="/posting" exact>
+            <Posting/>
           </Route>
         </ConnectedRouter>
       </Grid>
