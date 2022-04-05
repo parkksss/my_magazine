@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { auth } from '../../shared/firebase';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, browserSessionPersistence, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // actions
 const SET_USER = 'SET_USER';
@@ -21,21 +21,57 @@ const initialState = {
 };
 
 // middleware actions
+const loginCheckFB = () => {
+  return function (dispatch, getState, {history}) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUser({
+          user_name: user.displayName,
+          id: user.email,
+          user_profile: '',
+          uid: user.uid,
+        }));
+        // ...
+      } else {
+        dispatch.logOut();
+        // ...
+      }
+    });
+  }  
+};
+
 const loginFB = (id, pwd) => {
   return function (dispatch, getState, {history}) {
     // const auth = getAuth();
-    signInWithEmailAndPassword(auth, id, pwd)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        dispatch(setUser({user_name: user.displayName, id: id, user_profile: ''}));
-        history.push('/');
-        // ...
+
+    setPersistence(auth, browserSessionPersistence)
+      .then((res) => {
+        signInWithEmailAndPassword(auth, id, pwd)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            dispatch(setUser({
+              user_name: user.displayName,
+              id: id,
+              user_profile: '',
+              uid: user.uid,
+            }));
+            history.push('/');
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+          });
       })
       .catch((error) => {
+        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
+
   }
 };
 
@@ -49,7 +85,7 @@ const signupFB = (id, pwd, user_name) => {
         updateProfile(auth.currentUser, {
           displayName: user_name
         }).then(() => {
-          dispatch(setUser({user_name: user_name, id: id, user_profile: ''}));
+          dispatch(setUser({user_name: user_name, id: id, user_profile: '', uid: user.uid}));
           history.push('/');
         }).catch((error) => {
           console.log(error);
@@ -92,6 +128,7 @@ const actionCreators = {
   getUser,
   loginFB,
   signupFB,
+  loginCheckFB,
 };
 
 export { actionCreators };

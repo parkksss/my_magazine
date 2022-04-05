@@ -1,19 +1,21 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from '../redux/configureStore';
+import { apiKey } from "./firebase";
 
 import { Grid, Text, Button } from '../elements';
 import { getCookie, deleteCookie } from '../shared/Cookie';
 
 const Header = (props) => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const is_login = useSelector((state) => state.user.is_login);
-
+  const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
+  const is_session = sessionStorage.getItem(_session_key) ? true : false;
+  console.log(is_session);
   
-  if(is_login){
+  if(is_login && is_session){
     return (
       <React.Fragment>
         <Grid width='95%' padding='16px' margin='auto' is_flex>
@@ -45,10 +47,10 @@ const Header = (props) => {
         </Grid>
         <Grid is_flex>
           <Button text='login' margin='10px' _onClick={()=>{
-            alert('로그인할까?');
+            history.push('/login');
           }}></Button>
           <Button text='join' _onClick={()=>{
-            alert('회원가입할까?');
+            history.push('/signup');
           }}></Button>
         </Grid>
       </Grid>
