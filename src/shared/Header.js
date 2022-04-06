@@ -49,7 +49,7 @@ const Header = (props) => {
               alert('내정보?');
             }}></Button>
             <Button text='notice' margin='10px' _onClick={()=>{
-              alert('알림창?');
+              history.push('/noti');
             }}></Button>
             <Button text='logout' _onClick={()=>{
               dispatch(userActions.logoutFB());

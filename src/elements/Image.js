@@ -19,9 +19,16 @@ const Image = (props) => {
     );
   }
 
+  if (shape === "circle") {
+    return (
+      <React.Fragment>
+        <ImageCircle {...styles}></ImageCircle>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
-      <ImageCircle {...styles}></ImageCircle>
+        <ImageDefault {...styles}></ImageDefault>
     </React.Fragment>
   );
 }
@@ -31,6 +38,16 @@ Image.defaultProps = {
   src: "https://user-images.githubusercontent.com/91959791/161682922-347edc18-3711-4108-b9d1-26b51a41447c.jpg",
   size: 36,
 };
+
+const ImageDefault = styled.div`
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  height: var(--size);
+  
+  background-image: url("${(props) => props.src}");
+  background-size: cover;
+  background-position: center;
+`;
 
 const AspectOutter = styled.div`
   width: 100%;

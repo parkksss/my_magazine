@@ -16,6 +16,7 @@ import { Grid, Button } from '../elements';
 import Permit from './Permit';
 import PostWrite from '../pages/PostWrite';
 import PostDetail from '../pages/PostDetail';
+import Notification from '../pages/Notification';
 
 
 function App() {
@@ -43,15 +44,19 @@ function App() {
           <Route path="/signup" exact>
             <Signup/>
           </Route>
-          <Route path="/posting" exact component={PostWrite}/>
-          {/* <Route path="/posting" exact>
+          {/* <Route path="/posting" exact component={PostWrite}/> */}
+          <Route path="/posting" exact>
             <PostWrite/>
-          </Route> */}
+          </Route>
           <Route path="/post/:id" exact>
             <PostDetail/>
           </Route>
+          {/* <Route path="/noti" exact component={Notification}/> */}
+          <Route path="/noti" exact>
+            <Notification/>
+          </Route>
         </ConnectedRouter>
-      </Grid>
+      </Grid> 
       <Permit>
         <Button is_float text='+' _onClick={() => {history.push('/posting');}}></Button>
       </Permit>
