@@ -35,26 +35,13 @@ function App() {
       <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
-          <Route path="/" exact>
-            <Magazine/>
-          </Route>
-          <Route path="/login" exact>
-            <Login/>
-          </Route>
-          <Route path="/signup" exact>
-            <Signup/>
-          </Route>
-          {/* <Route path="/posting" exact component={PostWrite}/> */}
-          <Route path="/posting" exact>
-            <PostWrite/>
-          </Route>
-          <Route path="/post/:id" exact>
-            <PostDetail/>
-          </Route>
-          {/* <Route path="/noti" exact component={Notification}/> */}
-          <Route path="/noti" exact>
-            <Notification/>
-          </Route>
+          <Route path="/" exact component={Magazine} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/posting" exact component={PostWrite}/>
+          <Route path="/posting/:id" exact component={PostWrite}/>
+          <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/noti" exact component={Notification}/>
         </ConnectedRouter>
       </Grid> 
       <Permit>

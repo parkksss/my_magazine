@@ -1,10 +1,19 @@
 import React from 'react';
 import Header from '../shared/Header';
+import { Grid, Text, Image, Button } from '../elements';
 
-import { Grid, Text, Image } from '../elements';
+import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Post = (props) => {
+  const dispatch = useDispatch();
 
+  const deletePost = () => {
+    alert('삭제할거야?');
+    console.log(props);
+    dispatch(postActions.deletePostFB(props.id));
+  }
   return (
     <React.Fragment>
       {/* <Grid width='95%' padding='16px' margin='auto'> */}
@@ -15,7 +24,18 @@ const Post = (props) => {
               <Image shape='circle' src={props.src} />
               <Text bold>{props.user_info.user_name}</Text>
             </Grid>
-            <Text>{props.insert_dt}</Text>
+            <Grid is_flex width='auto'>
+              <Text>{props.insert_dt}</Text>
+              {props.is_me && <Grid width='auto'><Button width='auto' margin='0 0 0 10px' _onClick={() => {
+                history.push(`/posting/${props.id}`);
+              }}>
+                수정
+                </Button>
+                <Button width='auto' margin='0 0 0 10px' _onClick={deletePost}>
+                삭제
+                </Button>
+                </Grid>}
+            </Grid> 
           </Grid>
           <Grid>  
             <Text>{props.contents}</Text>
@@ -42,6 +62,7 @@ Post.defaultProps = {
   contents: '베리베리냠냠',
   comment_cnt: 10,
   insert_dt: '2021-02-27 10:00:00',
+  is_me: false,
 };
 
 export default Post;

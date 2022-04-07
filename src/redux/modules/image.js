@@ -25,7 +25,7 @@ function uploadImageFB(image) {
     
     dispatch(uploading(true));
     
-    console.log(`images/${new Date().getTime()}_${image.name}`);
+    // console.log(`images/${new Date().getTime()}_${image.name}`);
     const _upload = storage.ref(`images/${image.name}`).put(image);
 
     //   업로드!
@@ -34,7 +34,7 @@ function uploadImageFB(image) {
 
       // 업로드한 파일의 다운로드 경로를 가져오자!
       snapshot.ref.getDownloadURL().then((url) => {
-        console.log(url);
+        // console.log(url);
         dispatch(uploadImage(url));
       });
     }).catch(err => {
@@ -56,6 +56,8 @@ export default handleActions(
     }),
 
     [SET_PREVIEW]: (state, action) => produce(state, (draft) => {
+        console.log("draft ::", draft);
+        console.log("action.payload ::", action.payload);
         draft.preview = action.payload.preview;
       }),
 
